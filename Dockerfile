@@ -1,4 +1,4 @@
-FROM alpine:latest as py-ea
+FROM alpine:3.8 as py-ea
 ARG ELASTALERT_VERSION=v0.2.0b2
 ENV ELASTALERT_VERSION=${ELASTALERT_VERSION}
 # URL from which to download Elastalert.
@@ -9,6 +9,7 @@ ENV ELASTALERT_HOME /opt/elastalert
 
 WORKDIR /opt
 
+#RUN apk add --update --no-cache ca-certificates openssl-dev openssl python2-dev python2 py2-pip libffi-dev gcc musl-dev wget && \
 RUN apk add --update --no-cache ca-certificates openssl-dev openssl python2-dev python2 py2-pip py2-yaml libffi-dev gcc musl-dev wget && \
 # Download and unpack Elastalert.
     wget -O elastalert.zip "${ELASTALERT_URL}" && \
